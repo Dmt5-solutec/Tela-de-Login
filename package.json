@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "express-validator": "^7.1.0",
+    "mysql": "^2.18.1",
+    "node": "^20.14.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  },
+  "name": "solar-main",
+  "description": "",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}
