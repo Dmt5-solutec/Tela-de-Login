@@ -1,0 +1,133 @@
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #ecf0f1;
+    margin: 0;
+    padding: 0;
+  }
+  
+  img {
+    width: 220;
+  }
+
+  header {
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+  }
+
+  .form-container {
+    margin: 20px;
+    padding-left: 15px;
+    background-color: #FBF6E8;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: whitesmoke;
+  }
+
+  h3 {
+    margin: 0;
+    color: #299038;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    font-size: xx-large;
+  }
+
+  h1, h2 {
+    margin: 0;
+    color: #299038;
+  
+  }
+  
+  button {
+    background-color: #Fec311;
+    color: #fff;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    transition: background-color 0.3s, transform 0.1s; /* Adiciona transição */
+  }
+  
+  button:hover {
+    background-color: #888121;
+  }
+  
+  button:active {
+    transform: scale(0.95); /* Simula efeito de pressionado */
+  }
+
+  .remove-field-button {
+    background-color: #e74c3c;
+    color: #333;
+  }
+
+  .remove-field-button:hover {
+    background-color: #e0ac0d;
+  }
+
+  label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="number"],
+  select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: calc(100% - 20px);
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  .field {
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .notification {
+    background-color: #Fec311;
+    color: white;
+    padding: 15px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    border-radius: 8px;
+    display: none;
+    z-index: 1000;
+  }
+
+  #saved-forms {
+    margin: 20px;
+    padding-left: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  #forms {
+    margin: 20px;
+    padding-left: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
