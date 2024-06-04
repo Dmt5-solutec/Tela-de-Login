@@ -1,4 +1,6 @@
 //Dados
+let formCount = 0; // Variável para contar o número de formulários
+let savedForms = []; // Lista para armazenar os formulários salvos
 
 import { showNotification } from './notification.js';
 import { moveFormToSavedArea } from './formManager.js';
