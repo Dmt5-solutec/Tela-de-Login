@@ -24,7 +24,7 @@ export function saveForm(formId, formTitle = false) {
 
   const form = {
     id: formId,
-    title: formTitle,
+    title: formTitle || document.getElementById(`${formId}-title`).textContent,
     fields: formFields
   };
 
@@ -64,6 +64,7 @@ export function saveForm(formId, formTitle = false) {
     showNotification('Erro ao salvar o formulário');
   });
 }
+
 
 // Função para adicionar dados ao formulário
 export function addData(formId) {
