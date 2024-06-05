@@ -1,133 +1,165 @@
-  body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #ecf0f1;
-    margin: 0;
-    padding: 0;
-  }
+/* Responsivo e moderno */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #ecf0f1;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  width: 300px;
+}
+.hidden{
+  display: none;
+}
+header {
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+}
+
+.form-container {
+  margin-right: 10%;
+  margin-left: 10%;
+  padding: 1rem;
+  background-color: #FBF6E8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: whitesmoke;
   
-  img {
-    width: 220;
-  }
+}
 
-  header {
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-    text-align: center;
-  }
+h3 {
+    color: #299038;
+    font-size: 20px;
+    margin-bottom: 15px;
+    
+}
 
+h1, h2 {
+
+  color: #299038;
+}
+.buttonAddForm{
+  display: grid;
+  margin-right: 10%;
+  margin-left: 10%;
+}
+.buttonData {
+  display: grid;
+}
+.buttonForm {
+  display: grid;
+}
+
+button {
+  background-color: #Fec311;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  transition: background-color 0.3s, transform 0.1s;
+  margin: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #e0ac0d;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+.buttonRemoveForm{
+  display: grid;
+}
+.remove-field-button {
+  background-color: #e74c3c;
+  color: #fff;
+}
+.buttonInsert{
+  display: grid;
+}
+.remove-field-button:hover {
+  background-color: #c0392b;
+}
+label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+.hidden{
+  display: none;
+}
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.field {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.notification {
+  background-color: #Fec311;
+  color: white;
+  padding: 15px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  border-radius: 8px;
+  display: none;
+  z-index: 1000;
+}
+
+#saved-forms,
+#forms {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+/* Media queries para responsividade */
+@media (max-width: 768px) {
   .form-container {
-    margin: 20px;
-    padding-left: 15px;
-    background-color: #FBF6E8;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
+      margin: 10px;
+      padding: 10px;
   }
-
-  .form {
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: whitesmoke;
-  }
-
-  h3 {
-    margin: 0;
-    color: #299038;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    font-size: xx-large;
-  }
-
-  h1, h2 {
-    margin: 0;
-    color: #299038;
   
+  h3 {
+      font-size: 1.5rem;
   }
   
   button {
-    background-color: #Fec311;
-    color: #fff;
-    border: none;
-    padding: 7px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 13px;
-    align-items: center;
-    gap: 8px;
-    justify-content: center;
-    transition: background-color 0.3s, transform 0.1s; /* Adiciona transição */
+      font-size: 12px;
+      padding: 8px 12px;
   }
-  
-  button:hover {
-    background-color: #888121;
-  }
-  
-  button:active {
-    transform: scale(0.95); /* Simula efeito de pressionado */
-  }
-
-  .remove-field-button {
-    background-color: #e74c3c;
-    color: #333;
-  }
-
-  .remove-field-button:hover {
-    background-color: #e0ac0d;
-  }
-
-  label {
-    font-weight: bold;
-    margin-right: 10px;
-  }
-
-  input[type="text"],
-  input[type="date"],
-  input[type="number"],
-  select {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: calc(100% - 20px);
-    box-sizing: border-box;
-    font-size: 16px;
-  }
-
-  .field {
-    margin-bottom: 20px;
-    position: relative;
-  }
-
-  .notification {
-    background-color: #Fec311;
-    color: white;
-    padding: 15px;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    border-radius: 8px;
-    display: none;
-    z-index: 1000;
-  }
-
-  #saved-forms {
-    margin: 20px;
-    padding-left: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-
-  #forms {
-    margin: 20px;
-    padding-left: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
+}

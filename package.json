@@ -3,10 +3,12 @@
     "body-parser": "^1.20.2",
     "express": "^4.19.2",
     "express-validator": "^7.1.0",
+    "git": "^0.1.5",
     "mysql": "^2.18.1",
     "node": "^20.14.0",
     "sqlite": "^5.1.1",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "yarn": "^1.22.22"
   },
   "name": "solar-main",
   "description": "",

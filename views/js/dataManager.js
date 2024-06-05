@@ -1,9 +1,15 @@
-//Dados
+// dataManager.js
 
+// Variáveis globais para contagem de formulários e armazenamento de formulários salvos
+let formCount = 0; 
+let savedForms = []; 
+
+// Importar notificações e função para mover formulários
 import { showNotification } from './notification.js';
 import { moveFormToSavedArea } from './formManager.js';
 
-export function saveForm(formId, formTitle, showJSON = false) {
+// Função para salvar o formulário
+export function saveForm(formId, formTitle = false) {
   const fields = document.querySelectorAll(`#${formId}-fields .field`);
   const formFields = [];
   fields.forEach(field => {
@@ -18,7 +24,7 @@ export function saveForm(formId, formTitle, showJSON = false) {
 
   const form = {
     id: formId,
-    title: formTitle,
+    title: formTitle || document.getElementById(`${formId}-title`).textContent,
     fields: formFields
   };
 
@@ -46,7 +52,7 @@ export function saveForm(formId, formTitle, showJSON = false) {
       }
       const dataEntryDiv = document.getElementById(`${formId}-data-entry`);
       if (dataEntryDiv) {
-        dataEntryDiv.style.display = 'block';
+        dataEntryDiv.style.display = 'grid';
       } else {
         console.error(`Div de entrada de dados com ID ${formId}-data-entry não encontrada.`);
       }
@@ -59,6 +65,8 @@ export function saveForm(formId, formTitle, showJSON = false) {
   });
 }
 
+
+// Função para adicionar dados ao formulário
 export function addData(formId) {
   const formTitle = document.querySelector(`#${formId} h2`).textContent;
   const formData = {};
@@ -94,6 +102,7 @@ export function addData(formId) {
   });
 }
 
+// Função para carregar os formulários salvos
 export function loadSavedForms() {
   fetch('/getForms')
   .then(response => response.json())
@@ -106,15 +115,17 @@ export function loadSavedForms() {
         formDiv.id = formId;
         formDiv.innerHTML = `
           <h2>${formTitle}</h2>
+          <hr>
           <div id="${formId}-fields"></div>
-          <div id="${formId}-data-entry">
+          <div id="${formId}-data-entry" class="buttonInsert">
             <button class="add-data-button" onclick="addData('${formId}')"><i class="fas fa-plus"></i> Inserir Dados</button>
           </div>
         `;
-        document.getElementById('saved-forms').appendChild(formDiv);
-        moveFormToSavedArea(formId, formTitle);
-
-        loadFormFields(formId, formTitle);
+        if (!formDiv.classList.contains('hidden')) { // Não adicionar formulários ocultos
+          document.getElementById('saved-forms').appendChild(formDiv);
+          moveFormToSavedArea(formId, formTitle);
+          loadFormFields(formId, formTitle);
+        }
       });
     }
   })
@@ -123,6 +134,7 @@ export function loadSavedForms() {
   });
 }
 
+// Função para carregar os campos de um formulário específico
 export function loadFormFields(formId, formTitle) {
   fetch(`/getFormDetails?formTitle=${formTitle}`)
   .then(response => response.json())
