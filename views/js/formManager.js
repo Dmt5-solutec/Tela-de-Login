@@ -16,16 +16,20 @@ export function addForm() {
   formDiv.innerHTML = `
     <h2>${formTitle}</h2>
     <br>
-    <button class="add-field-button" onclick="addField('${formId}', 'text')"><i class="fas fa-plus"></i> Texto</button>
-    <button class="add-field-button" onclick="addField('${formId}', 'date')"><i class="fas fa-plus"></i> Data</button>
-    <button class="add-field-button" onclick="addField('${formId}', 'dropdown')"><i class="fas fa-plus"></i> Dropdown</button>
-    <button class="add-field-button" onclick="addField('${formId}', 'number')"><i class="fas fa-plus"></i> Número</button>
+    <div class=buttonForm>
+    <button class="add-field-button" onclick="addField('${formId}', 'text')"><i class="fa-sharp fa-solid fa-font fa-lg"></i> Texto</button>
+    <button class="add-field-button" onclick="addField('${formId}', 'date')"><i class="	far fa-calendar-alt fa-lg"></i> Data</button>
+    <button class="add-field-button" onclick="addField('${formId}', 'dropdown')"><i class="fa-solid fa-chevron-down fa-lg"></i> Dropdown</button>
+    <button class="add-field-button" onclick="addField('${formId}', 'number')"><i class="fa-regular fa-1 fa-lg"></i> Número</button>
+    </div>
     <hr>
     <div id="${formId}-fields"></div>
+    <div class=buttonData>
+    <button class="save-form-button" onclick="saveForm('${formId}', '${formTitle}', true)"><i class="fa-solid fa-clipboard-check fa-lg"></i> Salvar formulário</button>
     <button class="remove-form-button" onclick="removeForm('${formId}')" style="background-color:#fe112d";><i class="fas fa-trash-alt"></i> Remover Formulário</button>
-    <button class="save-form-button" onclick="saveForm('${formId}', '${formTitle}', true)"><i class="fas fa-save"></i> Salvar formulário</button>
     <div id="${formId}-data-entry" style="display:none;">
-      <button class="add-data-button" onclick="addData('${formId}')"><i class="fas fa-plus"></i> Inserir Dados</button>
+      <button class="add-data-button" id="buttonData" onclick="addData('${formId}')"><i class="fas fa-plus"></i> Inserir Dados</button>
+    </div>
     </div>
   `;
   document.getElementById('forms').appendChild(formDiv);
@@ -77,7 +81,7 @@ export function addField(formId, type) {
 
   fieldDiv.innerHTML = `
     ${fieldContent}
-    <button class="remove-field-button remove-field-${formId}" onclick="removeField('${formId}', '${fieldId}')">Remover Campo</button>
+    <button class="remove-field-button remove-field-${formId}" onclick="removeField('${formId}', '${fieldId}')"><i class=fas fa-eraser></i>Remover Campo</button>
   `;
   document.getElementById(`${formId}-fields`).appendChild(fieldDiv);
   showNotification('Campo adicionado!');
@@ -111,10 +115,10 @@ export function moveFormToSavedArea(formId, formTitle) {
     form.querySelectorAll('.add-field-button').forEach(button => button.remove());
     form.querySelectorAll('.remove-form-button').forEach(button => button.remove());
     
-    const removeFormButton = document.createElement('button');
-    removeFormButton.classList.add('remove-form-button');
-    removeFormButton.innerHTML = '<i class="fas fa-trash-alt"></i> Remover Formulário';
-    removeFormButton.onclick = () => {
+    const removeFormButton = document.createElement('div');
+    removeFormButton.classList.add('buttonRemoveForm');
+    removeFormButton.innerHTML = '<button class="remove-form-button" onclick="removeForm(${formId})" style="background-color:#fe112d";><i class="fas fa-trash-alt"></i> Remover Formulário</button>';
+    removeFormButton.onclick = ($formId) => {
       removeForm(formId);
       fetch('/removeForm', {
         method: 'POST',

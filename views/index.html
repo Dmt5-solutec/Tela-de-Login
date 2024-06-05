@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Construtor de Formulário</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Gerenciador de Formulário</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -12,23 +12,27 @@
     <img src="images/solar.png" alt="Solar Meninos de Luz">
 </header>
 <div class="div-forms">
-<div class="form-container">
     <br>
-    <button class="add-form-button" onclick="addForm()" style="font-size: 20px; width: 250px; height: 40px; display: flex; align-self: center;">
-        <i class="fas fa-plus"></i> Adicionar Formulário
+    <div class="buttonAddForm">
+    <button class="add-form-button" onclick="addForm()" style="margin: 0px; margin-bottom: 5px;">
+        <i class="fa-regular fa-file fa-lg"></i> Adicionar Formulário
     </button>
-    
+</div>
+<div class="form-container">
+    <h3><i class="fa-regular fa-pen-to-square"></i>  Edite seu Formulário</h3>
     <br>
+    
     <div id="forms" style="display: flex; flex-wrap: wrap; justify-content: space-around; flex-direction: row;"></div>
 </div>
 
 <br>
     <div class="form-container" id="saved-forms-container">
-    <h3>Formulários Salvos</h3>
+    <h3><i class="fa-regular fa-floppy-disk"></i>  Formulários Salvos</h3>
     <div id="saved-forms"></div>
   </div>
 </div>
 <div id="notification" class="notification"></div>
+<script src="https://kit.fontawesome.com/354ae0d78d.js" crossorigin="anonymous"></script>
 <script type="module" src="js/notification.js"></script>
 <script type="module" src="js/formManager.js"></script>
 <script type="module" src="js/dataManager.js"></script>
