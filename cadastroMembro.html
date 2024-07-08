@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Team Member</title>
+    <link rel="stylesheet" href="stylesMembro.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Add Team Member</h2>
+        <form id="teamMemberForm">
+            <div class="upload-photo">
+                <label for="uploadPhoto">
+                    <img id="photoPreview" src="placeholder.jpg" alt="Upload Photo">
+                </label>
+                <input type="file" id="uploadPhoto" accept="image/*">
+            </div>
+            <div class="form-group">
+                <input type="text" id="firstName" placeholder="Enter your first name">
+                <input type="text" id="lastName" placeholder="Enter your last name">
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Enter your email">
+                <input type="tel" id="phoneNumber" placeholder="Enter your phone number">
+            </div>
+            <div class="form-group">
+                <input type="text" id="position" placeholder="Enter your position">
+                <select id="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <button type="button" id="addButton">Add Now</button>
+        </form>
+    </div>
+    <script src="cadastroMembro.js"></script>
+</body>
+</html>

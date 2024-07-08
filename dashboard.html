@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solar</title>
+    <link rel="stylesheet" href="dash.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <aside class="sidebar">
+        <h2>Dashboard</h2>
+        <nav>
+          <ul>
+            <li><a href="dashboard.html">Home</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li>
+              <a href="./Solar---Meninos-de-Luz/views/index2.html">Formulário</a>
+            </li>
+            <li><a href="#">Dados</a></li>
+            <li><a id="permicao " href="autorizaAdm.html">Novo Membro</a></li>
+            <li><a id="sair" href="#">Sair</a></li>
+            
+          </ul>
+        </nav>
+      </aside>
+      <main class="main-content">
+        <header>
+          <ul class="ul-navbar">
+            <li class="li-navbar" style="float: right">
+              <a href="#"
+                ><img src="solar - Copia.png" alt="" width="100px"
+              /></a>
+            </li>
+          </ul>
+        </header>
+        <!--   ###Poderá sser reproveitado ####
+        <section class="cards">   
+          <div class="card">
+            <h3></h3>
+            <p></p>
+          </div>
+          <div class="card">
+            <h3></h3>
+            <p></p>
+          </div>
+          <div class="card">
+            <h3></h3>
+            <p></p>
+          </div>
+        </section>
+        <section class="chart">
+          <h2></h2>
+          <canvas id="salesChart"></canvas>
+        </section> -->
+      </main>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      $(function () {
+        $("#sair").on("click", function (event) {
+          if (!confirm('Pressione "OK" se deseja realmente sair.')) {
+            event.preventDefault();
+          } else {
+            window.location.href = "index.html"; // Redireciona para a página de login (index.html)
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
