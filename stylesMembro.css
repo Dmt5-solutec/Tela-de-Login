@@ -1,0 +1,75 @@
+body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+  }
+  
+  .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 50%;
+      height: 70%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  }
+  
+  h2 {
+      text-align: center;
+      margin-bottom: 20px;
+  }
+  
+  .upload-photo {
+      text-align: center;
+      margin-bottom: 82px;
+  }
+  
+  .upload-photo img {
+      width: 23%;
+      height: 45%;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+  }
+  
+  .upload-photo input {
+      display: none;
+  }
+  
+  .form-group {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px; /* Increase margin bottom for more space */
+  }
+  
+  .form-group input,
+  .form-group select {
+      width: 48%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 15px; /* Add margin bottom for vertical spacing */
+  }
+  
+  button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+  }
+  
+  button:hover {
+      background-color: #0056b3;
+  }
+  

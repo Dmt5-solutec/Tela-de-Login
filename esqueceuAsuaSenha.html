@@ -36,7 +36,7 @@
               <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
             </div>
             <div class="modal-body" style="padding: 40px 50px">
-              <form role="form" id="loginForm">
+              <form role="form" id="resetemailform">
                 <div class="form-group">
                   <label for="email"
                     ><span class="glyphicon glyphicon-user"></span> Email</label
@@ -92,58 +92,38 @@
         // Mostrar o modal automaticamente ao carregar a página
         $("#myModal").modal();
 
-        $("#loginForm").submit(function (event) {
-          event.preventDefault();
-          var email = $("#email").val();
-         
-
-          // if (email === "adm@gmail.com" && password === "123456") {
-          //   // Redireciona para outra página
-          //   window.location.href = " ";
-          // } else {
-          //   alert("Email inexistente !");
-          // }
-        });
+        
       });
-      localStorage.setItem('registeredEmails', JSON.stringify(['user1@example.com', 'user2@example.com']));
 
-    document.getElementById('reset-email-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      const registeredEmails = JSON.parse(localStorage.getItem('registeredEmails')) || [];
+  
+document.getElementById('resetemailform').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  
+  fetch('http://localhost:3000/sendresetemail', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email: email })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json(); // Analisar a resposta como JSON
+  })
+  .then(data => {
+    console.log(data);
+    if (data && data.message) {
+      alert(data.message); // Pegar a propriedade "message" do objeto JSON
+    } else {
+      alert('Erro: ' + (data.message || 'Resposta inválida do servidor'));
+    }
+  })
+  .catch(error => console.error('Erro:', error));
+});
 
-      if (registeredEmails.includes(email)) {
-        fetch('/send-reset-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email })
-        })
-        .then(response => response.text())
-        .then(data => alert(data))
-        .catch(error => console.error('Erro:', error));
-      } else {
-        alert('Email não registrado');
-      }
-    });
-
-    document.getElementById('reset-password-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const newPassword = document.getElementById('new-password').value;
-      const token = document.getElementById('reset-token').value;
-
-      fetch('/reset-password', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ token, newPassword })
-      })
-      .then(response => response.text())
-      .then(data => alert(data))
-      .catch(error => console.error('Erro:', error));
-    });
 
     // Função para obter o token da URL
     function getTokenFromUrl() {

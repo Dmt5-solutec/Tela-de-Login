@@ -1,5 +1,4 @@
 const express = require('express');
-const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const crypto = require('crypto');
 const cors = require('cors');
@@ -12,10 +11,10 @@ app.use(cors());
 
 // Configuração do Nodemailer
 const transporter = nodemailer.createTransport({
-  service: '', //  serviço de e-mail que você estiver usando
+  service: 'gmail', // ou o serviço de e-mail que você estiver usando
   auth: {
-    user: '',
-    pass: ''
+    user: 'douglaspangarosilva@gmail.com',
+    pass: '123456'
   }
 });
 
@@ -24,30 +23,7 @@ const registeredEmails = ['user1@example.com', 'user2@example.com'];
 const resetTokens = {}; // token: email
 
 app.post('/send-reset-email', (req, res) => {
-  const { email } = req.body;
-
-  if (!registeredEmails.includes(email)) {
-    return res.status(400).send('Email não registrado');
-  }
-
-  const resetToken = crypto.randomBytes(32).toString('hex');
-  resetTokens[resetToken] = email;
-
-  const resetURL = `http://localhost:3000/reset-password?token=${resetToken}`;
-
-  const mailOptions = {
-    from: 'seu-email@gmail.com',
-    to: email,
-    subject: 'Redefinição de Senha',
-    text: `Clique no link para redefinir sua senha: ${resetURL}`
-  };
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      return res.status(500).send('Erro ao enviar o e-mail de redefinição');
-    }
-    res.status(200).send('E-mail de redefinição enviado com sucesso');
-  });
+  
 });
 
 app.post('/reset-password', (req, res) => {

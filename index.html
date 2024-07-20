@@ -15,7 +15,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="content second-content ">
+      <div class="content second-content">
         <div class="first-column">
           <h2 class="title title-primary">Bem vindo de volta !</h2>
           <p class="description description-primary">
@@ -28,7 +28,7 @@
         </div>
         <div class="second-column">
           <div class="Imagem-menino">
-            <img src="/solar.png" alt="" />
+            <img src="views/images/solar.png" alt="" />
           </div>
           <h2 class="title title-second">Crie a sua conta</h2>
           <form class="form" id="formulario2">
@@ -62,7 +62,7 @@
         </div>
         <div class="second-column">
           <div class="Imagem-menino">
-            <img src="/solar.png" alt="" />
+            <img src="views/images/solar.png" alt="" />
           </div>
           <h2 class="title title-second">Entre com a sua conta</h2>
           <form class="form" id="formulario1">
@@ -94,7 +94,7 @@
           const email = document.getElementById("email").value;
           const nome = document.getElementById("nome").value;
           const password = document.getElementById("password").value;
-          if(email == "" && nome == "" && password == ""){
+          if (email == "" && nome == "" && password == "") {
             alert("Deve preencher todos os campos!!!");
             return;
           }
@@ -127,7 +127,6 @@
 
           const email = document.getElementById("email2").value;
           const password = document.getElementById("password2").value;
-        
 
           const response = await fetch("http://localhost:3000/loginws", {
             method: "POST",
