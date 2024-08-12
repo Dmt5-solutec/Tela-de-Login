@@ -1,167 +1,119 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
     <div class="container">
-      <div class="content second-content">
-        <div class="first-column">
-          <h2 class="title title-primary">Bem vindo de volta !</h2>
-          <p class="description description-primary">
-            Para se manter conectado conosco
-          </p>
-          <p class="description description-primary">
-            por favor, faça o login com as suas informações pessoais
-          </p>
-          <button id="signup" class="btn btn-primary">Entrar</button>
+        <div class="login-modal">
+            <div class="modal-header">
+                <div class="logo">
+                    <img src="img/solar_logo.png" alt="sol">
+                </div>
+                <h1>Faça seu login</h1>
+            </div>
+            <form class="form" id="loginForm">
+                <div class="modal-body">
+                    <div class="input-group">
+                        <input id="email2" type="email" placeholder="Digite seu e-mail" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="senha2" placeholder="Senha" required>
+                    </div>
+                    <a class="senha" href="#" id="forgotPasswordLink">Esqueceu a senha?</a>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-second" id="BotSegundo">Entrar</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="second-column">
-          <div class="Imagem-menino">
-            <img src="views/images/solar.png" alt="" />
-          </div>
-          <h2 class="title title-second">Crie a sua conta</h2>
-          <form class="form" id="formulario2">
-            <label class="label-input" for="">
-              <i class="far fa-user icon-modify"></i>
-              <input type="text" id="nome" placeholder="Nome" />
-            </label>
-            <label class="label-input" for="">
-              <i class="far fa-envelope icon-modify"></i>
-              <input type="email" id="email" placeholder="Email" />
-            </label>
-            <label class="label-input" for="">
-              <i class="fas fa-lock icon-modify"></i>
-              <input type="password" id="password" placeholder="Senha" />
-            </label>
-            <button class="btn btn-second">Entrar</button>
-          </form>
-        </div>
-      </div>
-      <div class="content first-content">
-        <div class="first-column">
-          <!--   TIREI O CADASTRO INICIAL !!!!
-           <h2 class="title title-primary">Olá! Bem Vindo</h2>
-          <p class="description description-primary">
-            Insira os seu dados pessoais
-          </p>
-          <p class="description description-primary">
-            e comece a sua jornada conosco
-          </p>
-          <button id="signin" class="btn btn-primary">Entrar</button> -->
-        </div>
-        <div class="second-column">
-          <div class="Imagem-menino">
-            <img src="views/images/solar.png" alt="" />
-          </div>
-          <h2 class="title title-second">Entre com a sua conta</h2>
-          <form class="form" id="formulario1">
-            <label class="label-input" for="">
-              <i class="far fa-envelope icon-modify"></i>
-              <input type="email" id="email2" placeholder="Email" />
-            </label>
-            <label class="label-input" for="">
-              <i class="fas fa-lock icon-modify"></i>
-              <input type="password" id="password2" placeholder="Senha" />
-            </label>
-            <a class="password" href="esqueceuAsuaSenha.html"
-              >Esqueceu a sua senha?</a
-            >
-            <button type="submit" class="btn btn-second" id="BotSegundo">
-              Entrar
-            </button>
-          </form>
-        </div>
-      </div>
     </div>
-    <script src="main.js"></script>
+
+    <!-- Modal Esqueceu a Senha -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Conteúdo do Modal -->
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><span class="glyphicon glyphicon-lock"></span> Esqueceu a Senha</h4>
+                </div>
+                <div class="modal-body" style="padding: 40px 50px">
+                    <form role="form" id="resetemailform">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="emailEsqueceu" placeholder="Digite seu email" required/>
+                        </div>
+                        <button type="submit" class="btn bg-gradient-warning btn-block">
+                            <span class="glyphicon glyphicon-off"></span> Enviar
+                        </button>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
-      document
-        .getElementById("formulario2")
-        .addEventListener("submit", async function (event) {
-          event.preventDefault();
 
-          const email = document.getElementById("email").value;
-          const nome = document.getElementById("nome").value;
-          const password = document.getElementById("password").value;
-          if (email == "" && nome == "" && password == "") {
-            alert("Deve preencher todos os campos!!!");
-            return;
-          }
-          const response = await fetch("http://localhost:3000/users", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: nome,
-              email: email,
-              password: password,
-            }),
-          });
-
-          if (response.ok) {
-            const data = await response.json();
-            console.log("User created:", data);
-            alert("User created successfully!");
-          } else {
-            console.error("Erro ao criar usuário");
-            alert("Erro ao criar usuário");
-          }
+                // Mostrar o modal ao clicar em "Esqueceu a senha?"
+                document.getElementById('forgotPasswordLink').addEventListener('click', function (e) {
+            e.preventDefault();
+            $('#myModal').modal('show');
         });
 
-      document
-        .getElementById("formulario1")
-        .addEventListener("submit", async function (event) {
-          event.preventDefault();
 
-          const email = document.getElementById("email2").value;
-          const password = document.getElementById("password2").value;
+ // Submissão do formulário de login
+ document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+    const emailField = document.getElementById('email2');
+    const senhaField = document.getElementById('senha2');
 
-          const response = await fetch("http://localhost:3000/loginws", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: email,
-              password: password,
-            }),
-          });
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-          if (response.status === 200) {
-            const data = await response.json();
-            if (data) {
-              console.log("Logged in:", data);
-              console.log(data.token);
-              localStorage.setItem(
-                "token",
-                data.token
-              ); /*tinha um alert abaixo*/
-              if (data.token != "") {
-                window.location.href = "./dashboard.html";
-              }
-            }
-          } else {
-            const errorText = await response.text();
-            console.error("Erro ao fazer login:", errorText);
-            alert("Erro ao fazer login: " + errorText);
-          }
-          if (email == "" && password == "") {
-            alert("Email e senha deve estar preenchidos");
-            return; // Para a execução se a validação falhar
-          }
-        });
+        if (emailField && senhaField) {
+            const email = emailField.value;
+            const senha = senhaField.value;
+
+            // Depuração: verificar os dados que estão sendo enviados
+            console.log('Email:', email);
+            console.log('Senha:', senha);
+
+            fetch('/login', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email: email, senha: senha })
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Falha na autenticação');
+    }
+    return response.json();
+})
+.then(data => {
+    console.log('Resposta do servidor:', data);
+    if (data.token) {
+        localStorage.setItem('authToken', data.token); // Armazena o token
+        window.location.href = '/menu'; // Redireciona para a página protegida
+    }
+    
+})
+.catch(error => console.error('Erro:', error));
+    }})
+})
+
+
+
     </script>
-  </body>
+</body>
 </html>

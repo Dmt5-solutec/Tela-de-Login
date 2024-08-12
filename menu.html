@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="/css/menu.css">
+</head>
+<body>
+    <header id="menu">
+        <div class="logo">
+            <img src="img/solar_logo.png" alt="Logo">
+        </div>
+        <ul class="main-menu">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="#">Formulário</a></li>
+            <li><a id="tabelaDados" href="#">Dados</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <i class="bi bi-filter-circle"></i>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a id="adicionarMembro" href="#" data-toggle="modal" data-target="#modalAdicionarMembro">Adicionar Membro</a></li>
+                <li><a id="sair" href="#">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="tablecontainerContent"></div>
+
+        <div class="content">
+            <div class="images">
+                <img src="img/imagem-1.jpeg" alt="Imagem 1">
+                <img src="img/imagem-2.png" alt="Imagem 2">
+            </div>
+            <div class="text">
+                <h1>Bem-vindo!</h1>
+                <p>O Solar Meninos de Luz é uma organização civil, filantrópica,
+                    que promove educação integral, cultura, esportes, apoio à                  
+                    profissionalização, cuidados básicos de saúde e de                   
+                    assistência social às famílias com maior nível de                  
+                    desestruturação das comunidades do Pavão-Pavãozinho e 
+                    Cantagalo.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Adicionar Membro -->
+    <div id="modalAdicionarMembro" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width: 600px;">
+            <!-- Conteúdo do modal -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Adicionar Membro</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="teamMemberForm">
+                        <div class="upload-photo">
+                            <label for="uploadPhoto">
+                                <img id="photoPreview" src="img/solar_logo.png" alt="Upload Photo">
+                            </label>
+                            <input type="file" id="uploadPhoto" accept="image/*" style="display: none;">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" id="firstName" placeholder="Nome"  style="width: 100%;" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Email" required>
+                            <input type="tel" id="phoneNumber" placeholder="Celular" pattern="[0-9]{10,15}" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="date" id="birthDate" placeholder="Data de Nascimento" required>
+                            <input type="text" id="position" placeholder="Acesso" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select id="gender" style="margin: 2px;" required>
+                                <option value="" disabled selected>Selecione o Gênero</option>
+                                <option value="MASCULINO">Masculino</option>
+                                <option value="FEMININO">Feminino</option>
+                                <option value="OUTROS">Outros</option>
+                            </select>
+                            <input type="password" id="password" placeholder="Senha" required>
+                        </div>
+                        
+                        <button type="button" id="addButton" class="btn btn-primary">Adicionar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inclua o jQuery primeiro -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Em seguida, inclua o DataTables -->
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> <!-- Bootstrap JS -->
+    <script>
+        $("#sair").on("click", function (event) {
+            if (!confirm('Pressione "OK" se deseja realmente sair.')) {
+                event.preventDefault();
+            } else {
+                window.location.href = "/"; // Redireciona para a página de login (index.html)
+            }
+        });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/menu', {
+    method: 'GET',
+    headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('authToken'), // Inclua o token aqui
+        'Content-Type': 'application/json'
+    }
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Falha na autenticação');
+    }
+    return response.json();
+})
+.then(data => console.log('Dados recebidos:', data))
+.catch(error => console.error('Erro:', error));
+
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+        const nivelAcesso = localStorage.getItem('acesso');
+        
+        if (nivelAcesso !== '3') {
+            const botaoAdicionarMembro = document.getElementById('adicionarMembro');
+            if (botaoAdicionarMembro) {
+                botaoAdicionarMembro.style.display = 'none';
+            }
+        }
+    });
+
+        // Mudar de cor no scroll
+       /* (function () {
+            var menu = document.getElementById('menu');
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 8) menu.classList.add('menuFixo');
+                else menu.classList.remove('menuFixo');
+            });
+        })();*/
+
+        // Lida com a navegação para o Dashboard
+        $("#dashboardLink").on("click", function (event) {
+            event.preventDefault();
+            window.location.href = "/dashboard";
+        });
+
+        // Aparecimento de mais opções
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.navbar').classList.toggle('active');
+        });
+
+        // Lida com o formulário de adicionar membro
+        $("#addButton").on("click", function () {
+            var firstName = $("#firstName").val();
+            var email = $("#email").val();
+            var phoneNumber = $("#phoneNumber").val();
+            var birthDate = $("#birthDate").val();
+            var position = $("#position").val();
+            var gender = $("#gender").val();
+            var password = $("#password").val();
+
+            console.log("Dados a serem enviados:", {
+                nome: firstName,
+                dataNascimento: birthDate,
+                genero: gender,
+                email: email,
+                senha: password,
+                acesso: position
+            });
+
+            // Envia os dados para o servidor
+            $.ajax({
+                type: "POST",
+                url: "/add-member", // URL do endpoint para adicionar o membro
+                data: JSON.stringify({
+                    nome: firstName,
+                    dataNascimento: birthDate,
+                    genero: gender,
+                    email: email,
+                    senha: password,
+                    acesso: position
+                }),
+                contentType: "application/json",
+                success: function (response) {
+                    alert("Membro adicionado com sucesso!");
+                    $("#modalAdicionarMembro").modal("hide");
+                    $("#teamMemberForm")[0].reset(); // Limpa o formulário
+                },
+                error: function (xhr, status, error) {
+                    alert("Erro ao adicionar membro: " + xhr.responseText); // Exibe a resposta de erro
+                }
+            });
+        });
+
+        // Evento para visualizar a foto no upload
+        $("#uploadPhoto").change(function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#photoPreview").attr("src", e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Lida com a exibição da tabela de alunos ao clicar em "Dados"
+        $("#tabelaDados").on("click", function (event) {
+            event.preventDefault();
+
+            // Limpa o conteúdo da main
+            $("main").empty();
+
+            // Insere a tabela no container específico
+            $("main").html(`
+                <div id="tablecontainerContent">
+                    <table id="alunosTable" class="display" style="width:100%">
+                        <h1>Alunos</h1>
+                        <thead>
+                            <tr>
+                                <th>Matrícula</th>
+                                <th>Nome</th>
+                                <th>Data de Nascimento</th>
+                                <th>Gênero</th>
+                                <th>Ano de Entrada</th>
+                                <th>Série</th>
+                                <th>Segmento</th>
+                                <th>Ano Letivo</th>
+                                <th>Oficina</th>
+                                <th>Trilha Tecnológica</th>
+                                <th>Resultado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            `);
+
+            // Inicializa o DataTable após a tabela ser inserida no DOM
+            $('#alunosTable').DataTable({
+                "ajax": "/consolidado", // URL do endpoint para buscar os dados dos alunos
+                "columns": [
+                    { "data": "matricula" },
+                    { "data": "nome" },
+                    { "data": "dataNascimento" },
+                    { "data": "genero" },
+                    { "data": "anoEntrada" },
+                    { "data": "serie" },
+                    { "data": "segmento" },
+                    { "data": "anoLetivo" },
+                    { "data": "oficina" },
+                    { "data": "trilhaTecnologica" },
+                    { "data": "resultado" }
+                ],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/Portuguese.json"
+                }
+            });
+        });
+    </script>
+
+    <footer class="rodape">
+        <p>Transformando vidas, construindo futuros.</p>
+    </footer>
+</body>
+</html>
